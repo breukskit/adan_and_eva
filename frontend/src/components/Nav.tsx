@@ -6,6 +6,8 @@ import { createUseStyles } from 'react-jss';
 import logo from '../assets/logo2.svg';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import { faBars, faTimes } from '@fortawesome/free-solid-svg-icons';
+import { CSSTransition } from 'react-transition-group';
+import './animation.css';
 
 const useStyles = createUseStyles({
   navbarContainer: {
@@ -17,22 +19,24 @@ const useStyles = createUseStyles({
     // maxWidth: '1140px',
     // margin: 'auto',
     padding: '1rem',
-    borderBottom: '1px solid rgba(0,0,0,0.15)',
+    // borderBottom: '1px solid rgba(0,0,0,0.15)',
+    // boxShadow: '3px 3px 10px 0px rgba(50, 50, 50, 0.5)',
   },
   fullSizeNav: {
+    height: '100%',
     display: 'flex',
     justifyContent: 'space-between',
+    alignItems: 'center',
     maxWidth: '1140px',
     margin: 'auto',
   },
   fullSizeList: {
     display: 'flex',
     alignItems: 'center',
+    height: '100%',
   },
   fullSizeListItem: {
     height: '100%',
-    display: 'flex',
-    alignItems: 'center',
     paddingRight: '1rem',
     paddingLeft: '1rem',
     '&:hover': {
@@ -46,6 +50,9 @@ const useStyles = createUseStyles({
       color: theme.primaryTextColor,
       fontSize: '1.1rem',
       fontWeight: '600',
+      height: '100%',
+      display: 'flex',
+      alignItems: 'center',
     },
   },
   fullSizeLeft: {
@@ -82,7 +89,8 @@ const useStyles = createUseStyles({
     background: '#ffffff',
     width: '100%',
     padding: '1rem',
-    borderBottom: '1px solid rgba(0,0,0,0.15)',
+    // borderBottom: '1px solid rgba(0,0,0,0.15)',
+    boxShadow: '3px 5px 3px 0px rgba(50, 50, 50, 0.5)',
   },
   dropdownItem: {
     fontSize: '1.1rem',
@@ -95,6 +103,9 @@ const useStyles = createUseStyles({
     },
     '& a': {
       color: theme.primaryTextColor,
+      display: 'block',
+      width: '100%',
+      height: '100%',
     },
     '&:hover': {
       cursor: 'pointer',
@@ -146,9 +157,17 @@ const FullSizeNav = () => {
 
 const MobileNav = () => {
   const [showDropdown, setShowDropdown] = useState(false);
+  const [menuHeight, setMenuHeight] = useState<null | number>(null);
   const classes = useStyles();
   const handleDropdown = () => {
     setShowDropdown(!showDropdown);
+  };
+  const calcHeight = (el: HTMLElement) => {
+    const height = el.offsetHeight;
+    setMenuHeight(height);
+  };
+  const exit = () => {
+    setMenuHeight(0);
   };
   return (
     <nav className={classes.mobileNav}>
@@ -171,30 +190,65 @@ const MobileNav = () => {
           onClick={handleDropdown}
         />
       </div>
-      {showDropdown && <Dropdown />}
+      <div
+        className="dropdown-container"
+        style={{
+          height: menuHeight!,
+        }}
+      >
+        <CSSTransition
+          in={showDropdown}
+          unmountOnExit
+          classNames="submenu"
+          timeout={300}
+          onEnter={calcHeight}
+          onExit={exit}
+        >
+          <Dropdown
+            showDropdown={showDropdown}
+            setShowDropdown={setShowDropdown}
+          />
+        </CSSTransition>
+      </div>
     </nav>
   );
 };
 
-const Dropdown = () => {
+interface IDropdownProps {
+  showDropdown: boolean;
+  setShowDropdown: React.Dispatch<React.SetStateAction<boolean>>;
+}
+
+const Dropdown = (props: IDropdownProps) => {
   const classes = useStyles();
+  const { setShowDropdown } = props;
   return (
     <div className={classes.dropdown}>
       <ul>
         <li className={classes.dropdownItem}>
-          <Link to="/">Home</Link>
+          <Link onClick={() => setShowDropdown(false)} to="/">
+            Home
+          </Link>
         </li>
         <li className={classes.dropdownItem}>
-          <Link to="/about-us">About us</Link>
+          <Link onClick={() => setShowDropdown(false)} to="/about-us">
+            About us
+          </Link>
         </li>
         <li className={classes.dropdownItem}>
-          <Link to="/services">Services</Link>
+          <Link onClick={() => setShowDropdown(false)} to="/services">
+            Services
+          </Link>
         </li>
         <li className={classes.dropdownItem}>
-          <Link to="/contact">Contact</Link>
+          <Link onClick={() => setShowDropdown(false)} to="/contact">
+            Contact
+          </Link>
         </li>
         <li className={classes.dropdownItem}>
-          <Link to="/gallery">Gallery</Link>
+          <Link onClick={() => setShowDropdown(false)} to="/gallery">
+            Gallery
+          </Link>
         </li>
       </ul>
     </div>
