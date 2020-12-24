@@ -6,7 +6,6 @@ const useStyles = createUseStyles({
   homeContainer: {
     maxWidth: '1140px',
     margin: 'auto',
-    marginTop: '120px',
   },
 });
 

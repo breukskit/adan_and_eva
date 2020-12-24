@@ -1,11 +1,11 @@
-import React from 'react';
+import React, { useState } from 'react';
 import { theme } from '../Theme';
 import { Link } from 'react-router-dom';
 import { useSetviewport } from '../useSetviewport';
 import { createUseStyles } from 'react-jss';
 import logo from '../assets/logo2.svg';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
-import { faBars } from '@fortawesome/free-solid-svg-icons';
+import { faBars, faTimes } from '@fortawesome/free-solid-svg-icons';
 
 const useStyles = createUseStyles({
   navbarContainer: {
@@ -14,13 +14,16 @@ const useStyles = createUseStyles({
     left: '0',
     height: '96px',
     width: '100%',
-    maxWidth: '1140px',
-    margin: 'auto',
+    // maxWidth: '1140px',
+    // margin: 'auto',
     padding: '1rem',
+    borderBottom: '1px solid rgba(0,0,0,0.15)',
   },
   fullSizeNav: {
     display: 'flex',
     justifyContent: 'space-between',
+    maxWidth: '1140px',
+    margin: 'auto',
   },
   fullSizeList: {
     display: 'flex',
@@ -59,9 +62,47 @@ const useStyles = createUseStyles({
     width: '50px',
   },
   mobileNav: {
+    height: '100%',
+  },
+  mobileNavWrapper: {
+    height: '100%',
     display: 'flex',
     alignItems: 'center',
     justifyContent: 'space-between',
+  },
+  mobileBars: {
+    '&:hover': {
+      cursor: 'pointer',
+    },
+  },
+  dropdown: {
+    position: 'absolute',
+    top: '96px',
+    left: '0',
+    background: '#ffffff',
+    width: '100%',
+    padding: '1rem',
+    borderBottom: '1px solid rgba(0,0,0,0.15)',
+  },
+  dropdownItem: {
+    fontSize: '1.1rem',
+    fontWeight: '600',
+    padding: {
+      top: '.5rem',
+      right: '0',
+      bottom: '.5rem',
+      left: '.2rem',
+    },
+    '& a': {
+      color: theme.primaryTextColor,
+    },
+    '&:hover': {
+      cursor: 'pointer',
+      background: 'rgb(240, 240, 240)',
+      '& a': {
+        color: theme.primaryColor,
+      },
+    },
   },
 });
 
@@ -70,7 +111,9 @@ const FullSizeNav = () => {
   return (
     <nav className={classes.fullSizeNav}>
       <div className={classes.fullSizeLeft}>
-        <img className={classes.logo} src={logo} alt="logo" />
+        <Link to="/">
+          <img className={classes.logo} src={logo} alt="logo" />
+        </Link>
         <div className={classes.fullSizeHeader}>
           <h2 style={{ textAlign: 'center', color: theme.headingColor }}>
             Adan &amp; Eva
@@ -102,20 +145,59 @@ const FullSizeNav = () => {
 };
 
 const MobileNav = () => {
+  const [showDropdown, setShowDropdown] = useState(false);
   const classes = useStyles();
+  const handleDropdown = () => {
+    setShowDropdown(!showDropdown);
+  };
   return (
     <nav className={classes.mobileNav}>
-      <img className={classes.logoMobile} src={logo} alt="logo" />
-      <div>
-        <h2 style={{ textAlign: 'center', color: theme.headingColor }}>
-          Adan &amp; Eva
-        </h2>
-        <h4 style={{ textAlign: 'center', color: theme.primaryTextColor }}>
-          Holistic Health
-        </h4>
+      <div className={classes.mobileNavWrapper}>
+        <Link to="/">
+          <img className={classes.logoMobile} src={logo} alt="logo" />
+        </Link>
+        <div>
+          <h2 style={{ textAlign: 'center', color: theme.headingColor }}>
+            Adan &amp; Eva
+          </h2>
+          <h4 style={{ textAlign: 'center', color: theme.primaryTextColor }}>
+            Holistic Health
+          </h4>
+        </div>
+        <FontAwesomeIcon
+          className={classes.mobileBars}
+          icon={showDropdown ? faTimes : faBars}
+          size="lg"
+          onClick={handleDropdown}
+        />
       </div>
-      <FontAwesomeIcon icon={faBars} size="lg" />
+      {showDropdown && <Dropdown />}
     </nav>
+  );
+};
+
+const Dropdown = () => {
+  const classes = useStyles();
+  return (
+    <div className={classes.dropdown}>
+      <ul>
+        <li className={classes.dropdownItem}>
+          <Link to="/">Home</Link>
+        </li>
+        <li className={classes.dropdownItem}>
+          <Link to="/about-us">About us</Link>
+        </li>
+        <li className={classes.dropdownItem}>
+          <Link to="/services">Services</Link>
+        </li>
+        <li className={classes.dropdownItem}>
+          <Link to="/contact">Contact</Link>
+        </li>
+        <li className={classes.dropdownItem}>
+          <Link to="/gallery">Gallery</Link>
+        </li>
+      </ul>
+    </div>
   );
 };
 

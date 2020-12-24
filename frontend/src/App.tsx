@@ -14,6 +14,7 @@ function App() {
     <Router>
       <div className="App">
         <Nav />
+        <div style={{ marginTop: '106px' }}></div>
         <Switch>
           <Route exact path="/" component={Home} />
           <Route exact path="/about-us" component={AboutUs} />
