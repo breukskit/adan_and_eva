@@ -1,12 +1,11 @@
 import React from 'react';
-
+import { theme } from '../Theme';
 import { Link } from 'react-router-dom';
-
 import { useSetviewport } from '../useSetviewport';
-
 import { createUseStyles } from 'react-jss';
-
 import logo from '../assets/logo2.svg';
+import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
+import { faBars } from '@fortawesome/free-solid-svg-icons';
 
 const useStyles = createUseStyles({
   navbarContainer: {
@@ -37,11 +36,13 @@ const useStyles = createUseStyles({
       cursor: 'pointer',
       background: 'rgb(240, 240, 240)',
       '& a': {
-        color: '#0F8888',
+        color: theme.primaryColor,
       },
     },
     '& a': {
-      color: '#4C4C4C',
+      color: theme.primaryTextColor,
+      fontSize: '1.1rem',
+      fontWeight: '600',
     },
   },
   fullSizeLeft: {
@@ -54,6 +55,14 @@ const useStyles = createUseStyles({
     marginLeft: '1rem',
     width: '50px',
   },
+  logoMobile: {
+    width: '50px',
+  },
+  mobileNav: {
+    display: 'flex',
+    alignItems: 'center',
+    justifyContent: 'space-between',
+  },
 });
 
 const FullSizeNav = () => {
@@ -63,8 +72,12 @@ const FullSizeNav = () => {
       <div className={classes.fullSizeLeft}>
         <img className={classes.logo} src={logo} alt="logo" />
         <div className={classes.fullSizeHeader}>
-          <h2 style={{ textAlign: 'center' }}>Adan &amp; Eva</h2>
-          <h4 style={{ textAlign: 'center' }}>Holistic Health</h4>
+          <h2 style={{ textAlign: 'center', color: theme.headingColor }}>
+            Adan &amp; Eva
+          </h2>
+          <h4 style={{ textAlign: 'center', color: theme.primaryTextColor }}>
+            Holistic Health
+          </h4>
         </div>
       </div>
       <ul className={classes.fullSizeList}>
@@ -72,18 +85,36 @@ const FullSizeNav = () => {
           <Link to="/">Home</Link>
         </li>
         <li className={classes.fullSizeListItem}>
-          <Link to="/">About us</Link>
+          <Link to="/about-us">About us</Link>
         </li>
         <li className={classes.fullSizeListItem}>
-          <Link to="/">Services</Link>
+          <Link to="/services">Services</Link>
         </li>
         <li className={classes.fullSizeListItem}>
-          <Link to="/">Contact</Link>
+          <Link to="/contact">Contact</Link>
         </li>
         <li className={classes.fullSizeListItem}>
-          <Link to="/">Gallery</Link>
+          <Link to="/gallery">Gallery</Link>
         </li>
       </ul>
+    </nav>
+  );
+};
+
+const MobileNav = () => {
+  const classes = useStyles();
+  return (
+    <nav className={classes.mobileNav}>
+      <img className={classes.logoMobile} src={logo} alt="logo" />
+      <div>
+        <h2 style={{ textAlign: 'center', color: theme.headingColor }}>
+          Adan &amp; Eva
+        </h2>
+        <h4 style={{ textAlign: 'center', color: theme.primaryTextColor }}>
+          Holistic Health
+        </h4>
+      </div>
+      <FontAwesomeIcon icon={faBars} size="lg" />
     </nav>
   );
 };
@@ -94,6 +125,9 @@ export const Nav = () => {
   return (
     <div className={classes.navbarContainer}>
       {viewport !== 'xs' && viewport !== 'small' && <FullSizeNav />}
+      {viewport !== 'xl' && viewport !== 'large' && viewport !== 'medium' && (
+        <MobileNav />
+      )}
     </div>
   );
 };
