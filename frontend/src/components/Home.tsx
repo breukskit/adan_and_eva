@@ -5,6 +5,7 @@ import { theme } from '../Theme';
 import { Link } from 'react-router-dom';
 
 import homePic from '../assets/2-min.jpg';
+import adanSmilingCliff from '../assets/adan-smiling-cliff-min.jpg';
 
 import { createUseStyles } from 'react-jss';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
@@ -179,11 +180,56 @@ const useStyles = createUseStyles({
   },
   inlineLink: {
     color: theme.primaryColor,
+    '&:hover': {
+      textDecoration: 'underline',
+    },
   },
   belowCardsParagraph: {
     fontSize: '1.2rem',
     textAlign: 'center',
     lineHeight: '2rem',
+  },
+  callToAction: {
+    display: 'grid',
+    gridTemplateColumns: 'repeat(2, 1fr)',
+    maxWidth: '1140px',
+    margin: 'auto',
+    padding: '1rem',
+    '@media(max-width: 766px)': {
+      gridTemplateColumns: '1fr',
+    },
+  },
+  callToActionText: {
+    textAlign: 'center',
+    '@media(max-width: 766px)': {
+      order: 2,
+      marginTop: '2rem',
+    },
+    padding: {
+      top: 0,
+      right: '1.5rem',
+      bottom: 0,
+      left: '1.5rem',
+    },
+    '& $h2': {
+      marginBottom: '1.5rem',
+    },
+    '& $p': {
+      lineHeight: '2rem',
+      fontSize: '1.1rem',
+      '@media(min-width: 800px)': {
+        maxWidth: '80%',
+        margin: 'auto',
+      },
+    },
+  },
+  callToActionImgContainer: {
+    display: 'flex',
+    justifyContent: 'center',
+    alignItems: 'flex-start',
+  },
+  callToActionImg: {
+    width: '300px',
   },
 });
 
@@ -265,6 +311,30 @@ export const Home = () => {
           </Link>{' '}
           to read more about the people behind this initiative.
         </p>
+      </div>
+      <div className={classes.callToAction}>
+        <div className={classes.callToActionText}>
+          <h2>Take the time to realign yourself</h2>
+          <p>
+            We strive for achieving a sense of balance and peace in the entirety
+            of the being. What we want to see in a person after a visit with us
+            is someone who is energized, healthy, happy, strong and full of
+            purpose. We consider it to be the birthright of every human being to
+            feel good and we will do everything in our power to achieve this for
+            everyone that comes. Read more about our methods{' '}
+            <Link className={classes.inlineLink} to="/services">
+              here
+            </Link>
+            .
+          </p>
+        </div>
+        <div className={classes.callToActionImgContainer}>
+          <img
+            className={classes.callToActionImg}
+            src={adanSmilingCliff}
+            alt="Man standing on cliff smiling"
+          />
+        </div>
       </div>
     </div>
   );
