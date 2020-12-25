@@ -7,6 +7,8 @@ import { Link } from 'react-router-dom';
 import homePic from '../assets/2-min.jpg';
 
 import { createUseStyles } from 'react-jss';
+import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
+import { faFrog, faHeart, faLeaf } from '@fortawesome/free-solid-svg-icons';
 
 const useStyles = createUseStyles({
   homeContainer: {
@@ -115,6 +117,73 @@ const useStyles = createUseStyles({
     '@media(max-width: 575px)': {
       fontSize: '1.2rem',
     },
+    '@media(max-width: 300px)': {
+      fontSize: '1rem',
+    },
+  },
+  servicesSamples: {
+    maxWidth: '1140px',
+    margin: 'auto',
+    padding: '2rem',
+    '& $h2': {
+      marginBottom: '2rem',
+      color: theme.primaryTextColor,
+    },
+  },
+  cardContainer: {
+    display: 'flex',
+    justifyContent: 'center',
+    flexWrap: 'wrap',
+    marginBottom: '1rem',
+  },
+  card: {
+    display: 'flex',
+    flexDirection: 'column',
+    alignItems: 'center',
+    width: '300px',
+    border: '1px solid rgba(0,0,0,0.15)',
+    padding: '1.25rem',
+    borderRadius: '5px',
+    boxShadow: '3px 3px 10px 0px rgba(50, 50, 50, 0.5)',
+    margin: '1rem',
+    '& $p': {
+      textAlign: 'center',
+      lineHeight: '1.75rem',
+      marginBottom: '1rem',
+      fontSize: '1.1rem',
+      fontWeight: 600,
+      color: theme.primaryTextColor,
+    },
+    '& $a': {
+      color: theme.primaryColor,
+      fontSize: '1.2rem',
+      '&:hover': {
+        textDecoration: 'underline',
+      },
+    },
+  },
+  cardHeader: {
+    color: theme.primaryColor,
+    fontSize: '1.5rem',
+    marginBottom: '1rem',
+    display: 'flex',
+    flexDirection: 'column',
+    alignItems: 'center',
+    '& $h3': {
+      textAlign: 'center',
+      fontSize: '1.5rem',
+    },
+  },
+  cardIcon: {
+    marginBottom: '.2rem',
+  },
+  inlineLink: {
+    color: theme.primaryColor,
+  },
+  belowCardsParagraph: {
+    fontSize: '1.2rem',
+    textAlign: 'center',
+    lineHeight: '2rem',
   },
 });
 
@@ -123,7 +192,12 @@ export const Home = () => {
   return (
     <div className={classes.homeContainer}>
       <div className={classes.heroPicContainer}>
-        <img className={classes.heroPic} src={homePic} alt="Jungle lagoon" />
+        <img
+          loading="lazy"
+          className={classes.heroPic}
+          src={homePic}
+          alt="Jungle lagoon"
+        />
         <div className={classes.heroText}>
           <h1>Welcome to the Jungle!</h1>
           <h3>Ready to try a different life?</h3>
@@ -134,6 +208,64 @@ export const Home = () => {
         We invite you to share our life in harmony with ourselves, each other
         and nature.
       </h2>
+      <div className={classes.servicesSamples}>
+        <h2>Some of our services and activities:</h2>
+        <div className={classes.cardContainer}>
+          <div className={classes.card}>
+            <div className={classes.cardHeader}>
+              <span>
+                <FontAwesomeIcon className={classes.cardIcon} icon={faHeart} />
+              </span>
+              <h3>Yoga</h3>
+            </div>
+            <p>
+              Ashtanga Yoga from the Tibetan Yoga-tradition that "vacuums" the
+              physical system and creates a sense of union between the body,
+              mind and soul.
+            </p>
+            <Link to="/services">Read More</Link>
+          </div>
+          <div className={classes.card}>
+            <div className={classes.cardHeader}>
+              <span>
+                <FontAwesomeIcon className={classes.cardIcon} icon={faFrog} />
+              </span>
+              <h3>Temazcal</h3>
+            </div>
+            <p>
+              Also known as "Mayan sweatlodge" or "shamanic shower" is a
+              ceremony conducted in high temperatures where water, herbs, music,
+              and energetic crystals is used to cleanse the body and purify the
+              mind and spirit.
+            </p>
+            <Link to="/services">Read More</Link>
+          </div>
+          <div className={classes.card}>
+            <div className={classes.cardHeader}>
+              <span>
+                <FontAwesomeIcon className={classes.cardIcon} icon={faLeaf} />
+              </span>
+              <h3>Community living in nature</h3>
+            </div>
+            <p>
+              We live together in each others loving company in the heart of the
+              beautiful Yucatan Jungle where life is given the ultimate
+              conditions to blossom.
+            </p>
+            <Link to="/services">Read More</Link>
+          </div>
+        </div>
+        <p className={classes.belowCardsParagraph}>
+          <Link className={classes.inlineLink} to="/services">
+            Click here
+          </Link>{' '}
+          to read more about what you could experience during your stay.{' '}
+          <Link className={classes.inlineLink} to="/about-us">
+            Click here
+          </Link>{' '}
+          to read more about the people behind this initiative.
+        </p>
+      </div>
     </div>
   );
 };
