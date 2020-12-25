@@ -1,4 +1,5 @@
-import React, { useState, useEffect } from 'react';
+import React, { useState, useEffect, useContext } from 'react';
+import { context, State } from '../App';
 import { theme } from '../Theme';
 import { Link } from 'react-router-dom';
 import { useSetviewport } from '../useSetviewport';
@@ -133,6 +134,7 @@ interface IFullSizeNavProps {
 
 const FullSizeNav = (props: IFullSizeNavProps) => {
   const { setShowDropdown } = props;
+  const lang = useContext<State | undefined>(context);
   const classes = useStyles();
   useEffect(() => {
     setShowDropdown(false);
@@ -148,25 +150,41 @@ const FullSizeNav = (props: IFullSizeNavProps) => {
             Adan &amp; Eva
           </h2>
           <h4 style={{ textAlign: 'center', color: theme.primaryTextColor }}>
-            Holistic Health
+            {lang!.language === 'english' && 'Holistic Health'}
+            {lang!.language === 'spanish' && 'Salud Integral'}
           </h4>
         </div>
       </div>
       <ul className={classes.fullSizeList}>
         <li className={classes.fullSizeListItem}>
-          <Link to="/">Home</Link>
+          <Link to="/">
+            {lang!.language === 'english' && 'Home'}
+            {lang!.language === 'spanish' && 'Inicio'}
+          </Link>
         </li>
         <li className={classes.fullSizeListItem}>
-          <Link to="/about-us">About us</Link>
+          <Link to="/about-us">
+            {lang!.language === 'english' && 'About us'}
+            {lang!.language === 'spanish' && 'Sobre nosotros'}
+          </Link>
         </li>
         <li className={classes.fullSizeListItem}>
-          <Link to="/services">Services</Link>
+          <Link to="/services">
+            {lang!.language === 'english' && 'Services'}
+            {lang!.language === 'spanish' && 'Servicios'}
+          </Link>
         </li>
         <li className={classes.fullSizeListItem}>
-          <Link to="/contact">Contact</Link>
+          <Link to="/contact">
+            {lang!.language === 'english' && 'Contact'}
+            {lang!.language === 'spanish' && 'Contacto'}
+          </Link>
         </li>
         <li className={classes.fullSizeListItem}>
-          <Link to="/gallery">Gallery</Link>
+          <Link to="/gallery">
+            {lang!.language === 'english' && 'Gallery'}
+            {lang!.language === 'spanish' && 'Galería'}
+          </Link>
         </li>
       </ul>
     </nav>
@@ -181,6 +199,7 @@ interface IMobileNavProps {
 const MobileNav = (props: IMobileNavProps) => {
   const { showDropdown, setShowDropdown } = props;
   const [menuHeight, setMenuHeight] = useState<null | number>(null);
+  const lang = useContext(context);
   const classes = useStyles();
   const handleDropdown = () => {
     setShowDropdown(!showDropdown);
@@ -203,7 +222,8 @@ const MobileNav = (props: IMobileNavProps) => {
             Adan &amp; Eva
           </h2>
           <h4 style={{ textAlign: 'center', color: theme.primaryTextColor }}>
-            Holistic Health
+            {lang!.language === 'english' && 'Holistic Health'}
+            {lang!.language === 'spanish' && 'Salud Integral'}
           </h4>
         </div>
         <FontAwesomeIcon
@@ -245,32 +265,38 @@ interface IDropdownProps {
 const Dropdown = (props: IDropdownProps) => {
   const classes = useStyles();
   const { setShowDropdown } = props;
+  const lang = useContext(context);
   return (
     <div>
       <ul className={classes.dropdownList}>
         <li className={classes.dropdownItem}>
           <Link onClick={() => setShowDropdown(false)} to="/">
-            Home
+            {lang!.language === 'english' && 'Home'}
+            {lang!.language === 'spanish' && 'Inicio'}
           </Link>
         </li>
         <li className={classes.dropdownItem}>
           <Link onClick={() => setShowDropdown(false)} to="/about-us">
-            About us
+            {lang!.language === 'english' && 'About us'}
+            {lang!.language === 'spanish' && 'Sobre nosotros'}
           </Link>
         </li>
         <li className={classes.dropdownItem}>
           <Link onClick={() => setShowDropdown(false)} to="/services">
-            Services
+            {lang!.language === 'english' && 'Services'}
+            {lang!.language === 'spanish' && 'Servicios'}
           </Link>
         </li>
         <li className={classes.dropdownItem}>
           <Link onClick={() => setShowDropdown(false)} to="/contact">
-            Contact
+            {lang!.language === 'english' && 'Contact'}
+            {lang!.language === 'spanish' && 'Contacto'}
           </Link>
         </li>
         <li className={classes.dropdownItem}>
           <Link onClick={() => setShowDropdown(false)} to="/gallery">
-            Gallery
+            {lang!.language === 'english' && 'Gallery'}
+            {lang!.language === 'spanish' && 'Galería'}
           </Link>
         </li>
       </ul>

@@ -1,4 +1,6 @@
-import React from 'react';
+import React, { useContext } from 'react';
+
+import { context } from '../App';
 
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import { faFacebookF } from '@fortawesome/free-brands-svg-icons';
@@ -73,13 +75,17 @@ interface IFooterProps {
 
 export const Footer = (props: IFooterProps) => {
   const classes = useStyles();
+  const langContext = useContext(context);
   return (
     <footer className={classes.footer}>
       <div className={classes.footerWrapper}>
         <div className={classes.leftContent}>
           <h3 className={classes.footerHeader}>Choose language</h3>
           <div className={classes.languages}>
-            <p className={classes.languagePick}>
+            <p
+              className={classes.languagePick}
+              onClick={() => langContext!.setLanguage('spanish')}
+            >
               <img
                 className={classes.flag}
                 src={mexicanFlag}
@@ -87,7 +93,10 @@ export const Footer = (props: IFooterProps) => {
               />
               Español
             </p>
-            <p className={classes.languagePick}>
+            <p
+              className={classes.languagePick}
+              onClick={() => langContext!.setLanguage('english')}
+            >
               <img
                 className={classes.flag}
                 src={britishFlag}
