@@ -1,4 +1,4 @@
-import React, { useState } from 'react';
+import React, { useState, useEffect } from 'react';
 import { theme } from '../Theme';
 import { Link } from 'react-router-dom';
 import { useSetviewport } from '../useSetviewport';
@@ -16,11 +16,14 @@ const useStyles = createUseStyles({
     left: '0',
     height: '96px',
     width: '100%',
+    background: '#ffffff',
     // maxWidth: '1140px',
     // margin: 'auto',
     padding: '1rem',
-    // borderBottom: '1px solid rgba(0,0,0,0.15)',
+    borderBottom: (showDropdown) =>
+      showDropdown ? '' : '1px solid rgba(0,0,0,0.15)',
     // boxShadow: '3px 3px 10px 0px rgba(50, 50, 50, 0.5)',
+    zIndex: 5,
   },
   fullSizeNav: {
     height: '100%',
@@ -88,9 +91,15 @@ const useStyles = createUseStyles({
     left: '0',
     background: '#ffffff',
     width: '100%',
-    padding: '1rem',
+    // padding: '1rem',
     // borderBottom: '1px solid rgba(0,0,0,0.15)',
     boxShadow: '3px 5px 3px 0px rgba(50, 50, 50, 0.5)',
+    height: '0',
+    transition: 'all 350ms ease-in-out',
+    overflow: 'hidden',
+  },
+  dropdownList: {
+    padding: '1rem',
   },
   dropdownItem: {
     fontSize: '1.1rem',
@@ -117,8 +126,17 @@ const useStyles = createUseStyles({
   },
 });
 
-const FullSizeNav = () => {
+interface IFullSizeNavProps {
+  showDropdown: boolean;
+  setShowDropdown: React.Dispatch<React.SetStateAction<boolean>>;
+}
+
+const FullSizeNav = (props: IFullSizeNavProps) => {
+  const { setShowDropdown } = props;
   const classes = useStyles();
+  useEffect(() => {
+    setShowDropdown(false);
+  }, [setShowDropdown]);
   return (
     <nav className={classes.fullSizeNav}>
       <div className={classes.fullSizeLeft}>
@@ -155,8 +173,13 @@ const FullSizeNav = () => {
   );
 };
 
-const MobileNav = () => {
-  const [showDropdown, setShowDropdown] = useState(false);
+interface IMobileNavProps {
+  showDropdown: boolean;
+  setShowDropdown: React.Dispatch<React.SetStateAction<boolean>>;
+}
+
+const MobileNav = (props: IMobileNavProps) => {
+  const { showDropdown, setShowDropdown } = props;
   const [menuHeight, setMenuHeight] = useState<null | number>(null);
   const classes = useStyles();
   const handleDropdown = () => {
@@ -191,7 +214,7 @@ const MobileNav = () => {
         />
       </div>
       <div
-        className="dropdown-container"
+        className={classes.dropdown}
         style={{
           height: menuHeight!,
         }}
@@ -223,8 +246,8 @@ const Dropdown = (props: IDropdownProps) => {
   const classes = useStyles();
   const { setShowDropdown } = props;
   return (
-    <div className={classes.dropdown}>
-      <ul>
+    <div>
+      <ul className={classes.dropdownList}>
         <li className={classes.dropdownItem}>
           <Link onClick={() => setShowDropdown(false)} to="/">
             Home
@@ -256,13 +279,22 @@ const Dropdown = (props: IDropdownProps) => {
 };
 
 export const Nav = () => {
-  const classes = useStyles();
+  const [showDropdown, setShowDropdown] = useState(false);
+  const classes = useStyles(showDropdown);
   const viewport = useSetviewport();
   return (
     <div className={classes.navbarContainer}>
-      {viewport !== 'xs' && viewport !== 'small' && <FullSizeNav />}
+      {viewport !== 'xs' && viewport !== 'small' && (
+        <FullSizeNav
+          showDropdown={showDropdown}
+          setShowDropdown={setShowDropdown}
+        />
+      )}
       {viewport !== 'xl' && viewport !== 'large' && viewport !== 'medium' && (
-        <MobileNav />
+        <MobileNav
+          showDropdown={showDropdown}
+          setShowDropdown={setShowDropdown}
+        />
       )}
     </div>
   );
