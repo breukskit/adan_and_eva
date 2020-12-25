@@ -194,6 +194,7 @@ const useStyles = createUseStyles({
     gridTemplateColumns: 'repeat(2, 1fr)',
     maxWidth: '1140px',
     margin: 'auto',
+    marginBottom: '2rem',
     padding: '1rem',
     '@media(max-width: 766px)': {
       gridTemplateColumns: '1fr',

@@ -1,4 +1,4 @@
-import React from 'react';
+import React, { useState } from 'react';
 
 import { BrowserRouter as Router, Switch, Route } from 'react-router-dom';
 
@@ -11,6 +11,7 @@ import { Gallery } from './components/Gallery';
 import { Footer } from './components/Footer';
 
 function App() {
+  const [language, setLanguage] = useState('english');
   return (
     <Router>
       <div className="App">
@@ -23,7 +24,7 @@ function App() {
           <Route exact path="/contact" component={Contact} />
           <Route exact path="/gallery" component={Gallery} />
         </Switch>
-        <Footer />
+        <Footer language={language} setLanguage={setLanguage} />
       </div>
     </Router>
   );
