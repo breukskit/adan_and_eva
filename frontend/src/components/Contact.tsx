@@ -5,12 +5,17 @@ import { theme } from '../Theme';
 import { context } from '../App';
 
 import { createUseStyles } from 'react-jss';
+import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
+import { faTimes } from '@fortawesome/free-solid-svg-icons';
+
+import './animation.css';
 
 const useStyles = createUseStyles({
   contactContainer: {
     maxWidth: '1140px',
     margin: 'auto',
     padding: '1rem',
+    position: 'relative',
   },
   header: {
     textAlign: 'center',
@@ -87,12 +92,119 @@ const useStyles = createUseStyles({
     borderRadius: '5px',
     border: '2px solid rgba(0,0,0,0.15)',
   },
+  successModal: {
+    position: 'fixed',
+    top: '50%',
+    left: '50%',
+    padding: '1.5rem',
+    display: 'flex',
+    flexDirection: 'column',
+    alignItems: 'center',
+    minWidth: '250px',
+    maxWidth: '400px',
+    transform: 'translateX(-50%) translateY(-50%)',
+    background: '#ffffff',
+    boxShadow: '3px 3px 10px 0px rgba(50, 50, 50, 0.5)',
+  },
+  modalExit: {
+    position: 'absolute',
+    top: '10px',
+    right: '10px',
+    '&:hover': {
+      cursor: 'pointer',
+    },
+  },
+  successModalHeader: {
+    marginTop: '.5rem',
+    textAlign: 'center',
+    marginBottom: '1rem',
+    color: theme.primaryColor,
+  },
+  successModalSubHeader: {
+    textAlign: 'center',
+    marginBottom: '1rem',
+  },
+  successModalParagraph: {
+    textAlign: 'center',
+    lineHeight: '1.5rem',
+    marginBottom: '1.5rem',
+  },
+  successModalCloseBtn: {
+    padding: {
+      top: '.5rem',
+      right: '1.5rem',
+      bottom: '.5rem',
+      left: '1.5rem',
+    },
+    background: theme.primaryColor,
+    border: 'none',
+    outline: 'none',
+    borderRadius: '5px',
+    textTransform: 'uppercase',
+    fontSize: '1rem',
+    color: '#ffffff',
+    transition: 'all 200ms ease-in-out',
+    letterSpacing: '.1rem',
+    '&:hover': {
+      cursor: 'pointer',
+      transform: 'scale(1.05)',
+      background: theme.btnHoverColor,
+    },
+  },
+  errorContainer: {
+    width: '100%',
+    marginBottom: '1.5rem',
+    border: '2px solid #DC3545',
+    padding: '2rem',
+    borderRadius: '5px',
+    background: '#F8D7DA',
+  },
+  errorMsg: {
+    textAlign: 'center',
+    color: '#842029',
+    fontWeight: 500,
+  },
+  overlay: {
+    position: 'fixed',
+    top: 0,
+    left: 0,
+    width: '100vw',
+    height: '100vh',
+    background: 'rgba(0,0,0,0.8)',
+    display: 'flex',
+    justifyContent: 'center',
+    alignItems: 'center',
+  },
 });
 
 export const Contact = () => {
   const classes = useStyles();
   const lang = useContext(context)!.language;
   const [state, setState] = useState({ name: '', email: '', message: '' });
+  const [emailSuccess, setEmailSuccess] = useState(false);
+  const [error, setError] = useState(false);
+  const [loading, setLoading] = useState(false);
+  const handleError = () => {
+    setError(true);
+    if (name === '') {
+      document.getElementById('name')!.style.border = '2px solid red';
+    }
+    if (email === '') {
+      document.getElementById('email')!.style.border = '2px solid red';
+    }
+    if (message === '') {
+      document.getElementById('message')!.style.border = '2px solid red';
+    }
+    setTimeout(() => {
+      setError(false);
+      document.getElementById('name')!.style.border =
+        '2px solid rgba(0,0,0,0.15)';
+      document.getElementById('email')!.style.border =
+        '2px solid rgba(0,0,0,0.15)';
+      document.getElementById('message')!.style.border =
+        '2px solid rgba(0,0,0,0.15)';
+    }, 8000);
+  };
   const { name, email, message } = state;
   const handleChange = (e: ChangeEvent) => {
     const target = e.currentTarget as HTMLInputElement;
@@ -102,16 +214,68 @@ export const Contact = () => {
   };
   const handleSubmit = async (e: FormEvent) => {
     e.preventDefault();
-    const response = fetch('/sendEmail', {
-      method: 'POST',
-      mode: 'cors',
-      headers: {
-        'Content-type': 'application/json',
-      },
-    });
+
+    if (name === '' || email === '' || message === '') {
+      handleError();
+    }
+
+    if (name !== '' && email !== '' && message !== '') {
+      setLoading(true);
+      try {
+        const response = await fetch('/sendEmail', {
+          method: 'POST',
+          mode: 'cors',
+          cache: 'default',
+          headers: {
+            'Content-type': 'application/json',
+          },
+          redirect: 'follow',
+          referrerPolicy: 'no-referrer',
+          body: JSON.stringify(state),
+        });
+        const data = await response.json();
+        setState({ name: '', email: '', message: '' });
+        if (data.msg === 'Success') {
+          setLoading(false);
+          setEmailSuccess(true);
+        }
+      } catch (error) {
+        console.log(error);
+        setLoading(false);
+      }
+    }
   };
   return (
     <div className={classes.contactContainer}>
+      {loading && (
+        <div className={classes.overlay}>
+          <div className="loader"></div>
+        </div>
+      )}
+      {emailSuccess && (
+        <div className={classes.successModal}>
+          <FontAwesomeIcon
+            className={classes.modalExit}
+            icon={faTimes}
+            size="lg"
+            onClick={() => setEmailSuccess(false)}
+          />
+          <h2 className={classes.successModalHeader}>Success!</h2>
+          <h3 className={classes.successModalSubHeader}>
+            Your email has been sent!
+          </h3>
+          <p className={classes.successModalParagraph}>
+            Thank you for your message. We will get back to you as soon as
+            possible.
+          </p>
+          <button
+            className={classes.successModalCloseBtn}
+            onClick={() => setEmailSuccess(false)}
+          >
+            Close
+          </button>
+        </div>
+      )}
       <h1 className={classes.header}>
         {lang === 'english' && 'Contact'}
         {lang === 'spanish' && 'Contacto'}
@@ -163,6 +327,13 @@ export const Contact = () => {
             rows={10}
           ></textarea>
         </label>
+        {error && (
+          <div className={classes.errorContainer}>
+            <h3 className={classes.errorMsg}>
+              Please fill out all the required fields
+            </h3>
+          </div>
+        )}
         <button className={classes.formButton} type="submit">
           Send
         </button>
