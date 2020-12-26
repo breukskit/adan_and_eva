@@ -122,7 +122,14 @@ export const Footer = (props: IFooterProps) => {
           <h3 className={classes.footerHeader}>Contact information</h3>
           <div className={classes.rightInnerContent}>
             <h4 style={{ marginBottom: '.5rem' }}>Email:</h4>
-            <p style={{ marginBottom: '1rem' }}>daniel.forsten@hotmail.com</p>
+            <p style={{ marginBottom: '1rem' }}>
+              <a
+                style={{ color: '#767676' }}
+                href="mailto:daniel.forsten@hotmail.com"
+              >
+                daniel.forsten@hotmail.com
+              </a>
+            </p>
             <h4 style={{ marginBottom: '.5rem' }}>Phone number:</h4>
             <p style={{ marginBottom: '1rem' }}>+46 735 57 04 68</p>
             <h4 style={{ marginBottom: '.5rem' }}>Address:</h4>
@@ -131,7 +138,6 @@ export const Footer = (props: IFooterProps) => {
             </p>
             <iframe
               src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d7044.542850107378!2d-87.58781096463419!3d20.721726221903374!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x8f51e0e5a87eb213%3A0x73f6839a3660fa34!2sNuevo%20Durango%2C%20Quintana%20Roo%2C%20Mexiko!5e0!3m2!1ssv!2sse!4v1608928661202!5m2!1ssv!2sse"
-              // className={classes.googleMap}
               width="100%"
               height="300"
               style={{ border: 0 }}

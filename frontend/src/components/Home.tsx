@@ -51,55 +51,55 @@ const useStyles = createUseStyles({
       bottom: '.5rem',
       left: '.5rem',
     },
-    '& $h1': {
-      textAlign: 'center',
-      fontSize: '3rem',
-      marginTop: '2rem',
-      marginBottom: '1.5rem',
-      textStroke: '2px rgba(0,0,0,0.75)',
-      textShadow: '2px 2px rgba(0,0,0,0.15)',
-      '@media(max-width: 575px)': {
-        fontSize: '2.2rem',
-        marginTop: '1rem',
-        textStroke: '1px rgba(0,0,0,0.75)',
-      },
-      '@media(max-width: 300px)': {
-        fontSize: '1.6rem',
-        textStroke: 0,
-      },
+  },
+  heroButton: {
+    background: theme.primaryColor,
+    padding: {
+      top: '.5rem',
+      right: '1.5rem',
+      bottom: '.5rem',
+      left: '1.5rem',
     },
-    '& $h3': {
-      textAlign: 'center',
-      fontSize: '2rem',
-      fontWeight: 600,
-      textShadow: '2px 2px rgba(0,0,0,0.15)',
-      marginBottom: '2rem',
-      '@media(max-width: 575px)': {
-        fontSize: '1.4rem',
-      },
-      '@media(max-width: 300px)': {
-        fontSize: '1rem',
-      },
+    textTransform: 'uppercase',
+    letterSpacing: '.1rem',
+    color: '#ffffff',
+    borderRadius: '5px',
+    fontWeight: 600,
+    transition: 'all 200ms',
+    '&:hover': {
+      cursor: 'pointer',
+      background: '#1fa3a3',
+      transform: 'scale(1.05)',
     },
-    '& $a': {
-      background: theme.primaryColor,
-      padding: {
-        top: '.5rem',
-        right: '1.5rem',
-        bottom: '.5rem',
-        left: '1.5rem',
-      },
-      textTransform: 'uppercase',
-      letterSpacing: '.1rem',
-      color: '#ffffff',
-      borderRadius: '5px',
-      fontWeight: 600,
-      transition: 'all 200ms',
-      '&:hover': {
-        cursor: 'pointer',
-        background: '#1fa3a3',
-        transform: 'scale(1.05)',
-      },
+  },
+  heroHeader: {
+    textAlign: 'center',
+    fontSize: '3rem',
+    marginTop: '2rem',
+    marginBottom: '1.5rem',
+    textStroke: '2px rgba(0,0,0,0.75)',
+    textShadow: '2px 2px rgba(0,0,0,0.15)',
+    '@media(max-width: 575px)': {
+      fontSize: '2.2rem',
+      marginTop: '1rem',
+      textStroke: '1px rgba(0,0,0,0.75)',
+    },
+    '@media(max-width: 300px)': {
+      fontSize: '1.6rem',
+      textStroke: 0,
+    },
+  },
+  heroSubHeader: {
+    textAlign: 'center',
+    fontSize: '2rem',
+    fontWeight: 600,
+    textShadow: '2px 2px rgba(0,0,0,0.15)',
+    marginBottom: '2rem',
+    '@media(max-width: 575px)': {
+      fontSize: '1.4rem',
+    },
+    '@media(max-width: 300px)': {
+      fontSize: '1rem',
     },
   },
   subHeader: {
@@ -246,9 +246,13 @@ export const Home = () => {
           alt="Jungle lagoon"
         />
         <div className={classes.heroText}>
-          <h1>Welcome to the Jungle!</h1>
-          <h3>Ready to try a different life?</h3>
-          <Link to="/contact">Book</Link>
+          <h1 className={classes.heroHeader}>Welcome to the Jungle!</h1>
+          <h3 className={classes.heroSubHeader}>
+            Ready to try a different life?
+          </h3>
+          <Link className={classes.heroButton} to="/contact">
+            Book
+          </Link>
         </div>
       </div>
       <h2 className={classes.subHeader}>
