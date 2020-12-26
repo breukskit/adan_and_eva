@@ -3,6 +3,7 @@ import React from 'react';
 import { theme } from '../Theme';
 
 import yogaJungle from '../assets/yoga-jungle.jpg';
+import pyramid from '../assets/pyramid.jpg';
 
 import { createUseStyles } from 'react-jss';
 
@@ -35,7 +36,9 @@ const useStyles = createUseStyles({
   method: {
     display: 'grid',
     gridTemplateColumns: 'repeat(2, 1fr)',
+    gap: '1rem',
     marginBottom: '2.5rem',
+    padding: '1rem',
     '@media(max-width: 766px)': {
       gridTemplateColumns: '1fr',
     },
@@ -62,15 +65,23 @@ const useStyles = createUseStyles({
     color: theme.primaryColor,
   },
   methodDescription: {
-    lineHeight: '1.5rem',
+    lineHeight: '1.75rem',
     fontSize: '1.1rem',
   },
   methodImgContainer: {
     display: 'flex',
     justifyContent: 'center',
     alignItems: 'center',
+    '@media(max-width: 766px)': {
+      marginBottom: '1rem',
+      '&:nth-child(odd)': {
+        order: 2,
+      },
+    },
   },
-  methodImg: {},
+  methodImg: {
+    maxWidth: '100%',
+  },
 });
 
 export const Services = () => {
@@ -114,26 +125,22 @@ export const Services = () => {
           <div className={classes.methodImgContainer}>
             <img
               className={classes.methodImg}
-              src={yogaJungle}
-              alt="Woman doing yoga in the jungle"
+              src={pyramid}
+              alt="Pyramid in Chitchen Itza"
             />
           </div>
           <div className={classes.methodTextContent}>
             <h2 className={classes.methodHeader}>Pyramid excursions</h2>
             <p className={classes.methodDescription}>
-              Yoga is not just a set of acrobatic exercises - it is a way of
-              life. It is a special kind of relationship between the different
-              parts of the being.
-              <br />
-              <br />
-              When one practices yoga he or she is cleaning, both in a physical
-              and energetical sense. This cleaning paves the way for energy to
-              flow freely through the system. When an individual has this kind
-              of flow he or she experiences a profound sense of health, in both
-              body and mind.
-              <br />
-              In our community we practice Ashtangayoga which is a traditional,
-              methodical approach.
+              Mexico is home to some of the worlds most awe inspiring structures
+              - the pyramids. These places of worship from the times of the Maya
+              and the Aztec cultures are vibrant and full of energy. We
+              regularly take trips to these magic places to feel the power there
+              and to enjoy the "vibe". After one of these trips one feels
+              energized and harmonious. These are also one of the best places in
+              the world to find jewelry and other beautiful items made from
+              obsidian and other materials which were revered by the indigenous
+              peoples of Central America.
             </p>
           </div>
         </div>

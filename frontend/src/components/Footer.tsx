@@ -130,6 +130,14 @@ export const Footer = (props: IFooterProps) => {
                 daniel.forsten@hotmail.com
               </a>
             </p>
+            <p style={{ marginBottom: '1rem' }}>
+              <a
+                style={{ color: '#767676' }}
+                href="mailto:adan.corrovina13@gmail.com"
+              >
+                adan.corrovina13@gmail.com
+              </a>
+            </p>
             <h4 style={{ marginBottom: '.5rem' }}>Phone number:</h4>
             <p style={{ marginBottom: '1rem' }}>+46 735 57 04 68</p>
             <h4 style={{ marginBottom: '.5rem' }}>Address:</h4>
