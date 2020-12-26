@@ -337,6 +337,7 @@ export const Home = () => {
         </div>
         <div className={classes.callToActionImgContainer}>
           <img
+            loading="lazy"
             className={classes.callToActionImg}
             src={adanSmilingCliff}
             alt="Man standing on cliff smiling"

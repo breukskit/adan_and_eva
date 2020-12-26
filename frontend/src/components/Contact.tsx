@@ -106,6 +106,20 @@ const useStyles = createUseStyles({
     background: '#ffffff',
     boxShadow: '3px 3px 10px 0px rgba(50, 50, 50, 0.5)',
   },
+  serverErrorModal: {
+    position: 'fixed',
+    top: '50%',
+    left: '50%',
+    padding: '1.5rem',
+    display: 'flex',
+    flexDirection: 'column',
+    alignItems: 'center',
+    minWidth: '250px',
+    maxWidth: '400px',
+    transform: 'translateX(-50%) translateY(-50%)',
+    background: '#ffffff',
+    boxShadow: '3px 3px 10px 0px rgba(50, 50, 50, 0.5)',
+  },
   modalExit: {
     position: 'absolute',
     top: '10px',
@@ -120,11 +134,26 @@ const useStyles = createUseStyles({
     marginBottom: '1rem',
     color: theme.primaryColor,
   },
+  serverErrorModalHeader: {
+    marginTop: '.5rem',
+    textAlign: 'center',
+    marginBottom: '1rem',
+    color: '#842029',
+  },
   successModalSubHeader: {
     textAlign: 'center',
     marginBottom: '1rem',
   },
+  serverErrorModalSubheader: {
+    textAlign: 'center',
+    marginBottom: '1rem',
+  },
   successModalParagraph: {
+    textAlign: 'center',
+    lineHeight: '1.5rem',
+    marginBottom: '1.5rem',
+  },
+  serverErrorModalParagraph: {
     textAlign: 'center',
     lineHeight: '1.5rem',
     marginBottom: '1.5rem',
@@ -183,6 +212,7 @@ export const Contact = () => {
   const [state, setState] = useState({ name: '', email: '', message: '' });
   const [emailSuccess, setEmailSuccess] = useState(false);
   const [error, setError] = useState(false);
+  const [serverError, setServerError] = useState(false);
   const [loading, setLoading] = useState(false);
   const handleError = () => {
     setError(true);
@@ -238,9 +268,13 @@ export const Contact = () => {
         if (data.msg === 'Success') {
           setLoading(false);
           setEmailSuccess(true);
+        } else {
+          setServerError(true);
         }
       } catch (error) {
-        console.log(error);
+        // console.log(error);
+        // console.log('hej');
+        setServerError(true);
         setLoading(false);
       }
     }
@@ -250,6 +284,30 @@ export const Contact = () => {
       {loading && (
         <div className={classes.overlay}>
           <div className="loader"></div>
+        </div>
+      )}
+      {serverError && (
+        <div className={classes.serverErrorModal}>
+          <FontAwesomeIcon
+            className={classes.modalExit}
+            icon={faTimes}
+            size="lg"
+            onClick={() => setServerError(false)}
+          />
+          <h2 className={classes.serverErrorModalHeader}>Error!</h2>
+          <h3 className={classes.serverErrorModalSubheader}>
+            Your email could not be sent!
+          </h3>
+          <p className={classes.serverErrorModalParagraph}>
+            An error occurred. Please use the contact-information in the bottom
+            of the page instead.
+          </p>
+          <button
+            className={classes.successModalCloseBtn}
+            onClick={() => setServerError(false)}
+          >
+            Close
+          </button>
         </div>
       )}
       {emailSuccess && (
