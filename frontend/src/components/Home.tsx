@@ -126,10 +126,10 @@ const useStyles = createUseStyles({
     maxWidth: '1140px',
     margin: 'auto',
     padding: '2rem',
-    '& $h2': {
-      marginBottom: '2rem',
-      color: theme.primaryTextColor,
-    },
+  },
+  serviceSamplesHeader: {
+    marginBottom: '2rem',
+    color: theme.primaryTextColor,
   },
   cardContainer: {
     display: 'flex',
@@ -256,7 +256,9 @@ export const Home = () => {
         and nature.
       </h2>
       <div className={classes.servicesSamples}>
-        <h2>Some of our services and activities:</h2>
+        <h2 className={classes.serviceSamplesHeader}>
+          Some of our services and activities:
+        </h2>
         <div className={classes.cardContainer}>
           <div className={classes.card}>
             <div className={classes.cardHeader}>
