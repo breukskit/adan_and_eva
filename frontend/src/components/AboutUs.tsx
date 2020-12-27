@@ -96,12 +96,13 @@ export const AboutUs = () => {
           <h3 className={classes.cardTitle}>Eva Forstén</h3>
           <p className={classes.cardParagraph}>
             Eva is a long time spiritual seeker and practitioner of various
-            esoteric methods. She has written a number of books and conducted
-            healing on a large number of individuals from many different places
-            and backgrounds. She wants to live in such a way where it is the
-            heart and soul that is the primary source of truth rather than the
-            mind. Her main passion in life is the spiritual process and she will
-            gladly follow and guide anyone on their path.
+            esoteric methods as well as a well educated academic. She has
+            written a number of books and conducted healing on a large number of
+            individuals from many different places and backgrounds. She wants to
+            live in such a way where it is the heart and soul that is the
+            primary source of truth rather than the mind. Her main passion in
+            life is the spiritual process and she will gladly follow and guide
+            anyone on their path.
           </p>
         </div>
         <div className={classes.card}>
@@ -123,8 +124,11 @@ export const AboutUs = () => {
           <p className={classes.cardParagraph}>
             Jesús (or Chicho as he is often called) is like all of us a long
             time seeker of a meaningful existence. In our community in the
-            jungle he have found a sense of purpose and calmness in everyday
-            life where he spreads light with his calm and loving demeanor.
+            jungle he has found a sense of purpose and calmness in everyday life
+            where he spreads light with his calm and loving demeanor. Jesús is a
+            very competent housebuilder and he have played and plays an
+            important role in the construction of our community home in the
+            jungle.
           </p>
         </div>
         <div className={classes.card}>
@@ -133,21 +137,25 @@ export const AboutUs = () => {
           <p className={classes.cardParagraph}>
             Daniel is seeking a sense of liberation and freedom through simple
             living and a healthy relationship with the self. He feels that he in
-            this initiative have found a purpose and a home. Daniel is a long
+            this initiative has found a purpose and a home. Daniel is a long
             time practitioner of music which is something he often utilizes
-            during our daily activities.
+            during our daily activities. He is also good at organization and
+            structure and often serves as a coordinator of practical matters in
+            our community.
           </p>
         </div>
         <div className={classes.card}>
           <img className={classes.cardImg} src={marcus} alt="Marcus" />
           <h3 className={classes.cardTitle}>Marcus Forstén</h3>
           <p className={classes.cardParagraph}>
-            Marcus takes on a very special role in our community. His education
-            with cognitive behavioral therapy and genuine passion for exchange
-            of life experience leads him on a particular path with the people he
-            meets. He have lived in many different parts of the world and met a
-            lot of different people and have always been there to listen and
-            explore without judgement.
+            Marcus takes a very special role in our community. With his broad
+            academic background he has a great interest in matters concerning
+            holistic health and human life. He has education within behavioral
+            science, cognitive behavioral therapy (amongst other things) and a
+            genuine passion for exchange of life experiences. This leads him on
+            a particular path with the people he meets. He has lived and worked
+            in different parts of the world and met a lot of different people.
+            Marcus is always there to listen, explore and talk about life.
           </p>
         </div>
       </div>

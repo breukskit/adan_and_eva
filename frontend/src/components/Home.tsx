@@ -1,4 +1,6 @@
-import React from 'react';
+import React, { useContext } from 'react';
+
+import { context } from '../App';
 
 import { theme } from '../Theme';
 
@@ -236,6 +238,8 @@ const useStyles = createUseStyles({
 
 export const Home = () => {
   const classes = useStyles();
+  const langContext = useContext(context);
+  const language = langContext!.language;
   return (
     <div className={classes.homeContainer}>
       <div className={classes.heroPicContainer}>
@@ -246,22 +250,30 @@ export const Home = () => {
           alt="Jungle lagoon"
         />
         <div className={classes.heroText}>
-          <h1 className={classes.heroHeader}>Welcome to the Jungle!</h1>
+          <h1 className={classes.heroHeader}>
+            {language === 'english' && 'Welcome to the Jungle!'}
+            {language === 'spanish' && 'Bienvenidos a la selva!'}
+          </h1>
           <h3 className={classes.heroSubHeader}>
-            Ready to try a different life?
+            {language === 'english' && 'Ready to try a different life?'}
+            {language === 'spanish' && 'Listo para una vida diferente?'}
           </h3>
           <Link className={classes.heroButton} to="/contact">
-            Book
+            {language === 'english' && 'Book'}
+            {language === 'spanish' && 'Reserva'}
           </Link>
         </div>
       </div>
       <h2 className={classes.subHeader}>
-        We invite you to share our life in harmony with ourselves, each other
-        and nature.
+        {language === 'english' &&
+          'We invite you to share our life in harmony with ourselves, each other and nature.'}
+        {language === 'spanish' &&
+          'Te invitamos a compartir nuestra vida en armonía con nosotros mismos, entre nosotros y con la naturaleza.'}
       </h2>
       <div className={classes.servicesSamples}>
         <h2 className={classes.serviceSamplesHeader}>
-          Some of our services and activities:
+          {language === 'english' && 'Some of our services and activities:'}
+          {language === 'spanish' && 'Algunos de nuestros actividades:'}
         </h2>
         <div className={classes.cardContainer}>
           <div className={classes.card}>
@@ -272,11 +284,15 @@ export const Home = () => {
               <h3>Yoga</h3>
             </div>
             <p>
-              Ashtanga Yoga from the Tibetan Yoga-tradition that "vacuums" the
-              physical system and creates a sense of union between the body,
-              mind and soul.
+              {language === 'english' &&
+                'Ashtanga Yoga from the Tibetan Yoga-tradition that "vacuums" the physical system and creates a sense of union between the body, mind and soul.'}
+              {language === 'spanish' &&
+                'La Yoga Ashtanga de la tradición Tibetana que purifica el sístema físico y cree una sensación de unión del cuerpo, de la mente y del alma.'}
             </p>
-            <Link to="/services">Read More</Link>
+            <Link to="/services">
+              {language === 'english' && 'Read More'}
+              {language === 'spanish' && 'Lee mas'}
+            </Link>
           </div>
           <div className={classes.card}>
             <div className={classes.cardHeader}>
@@ -286,51 +302,72 @@ export const Home = () => {
               <h3>Temazcal</h3>
             </div>
             <p>
-              Also known as "Mayan sweatlodge" or "shamanic shower" is a
-              ceremony conducted in high temperatures where water, herbs, music,
-              and energetic crystals is used to cleanse the body and purify the
-              mind and spirit.
+              {language === 'english' &&
+                'Also known as "Mayan sweatlodge" or "shamanic shower" is aceremony conducted in high temperatures where water, herbs, music, and energetic crystals is used to cleanse the body and purify the mind and spirit.'}
+              {language === 'spanish' &&
+                'También conocido como "baño de sudor maya" o "ducha chamánica" es una ceremonia que se lleva a cabo a altas temperaturas donde se usa agua, hierbas, música y cristales energéticos para limpiar el cuerpo y purificar la mente y el espíritu.'}
             </p>
-            <Link to="/services">Read More</Link>
+            <Link to="/services">
+              {language === 'english' && 'Read More'}
+              {language === 'spanish' && 'Lee mas'}
+            </Link>
           </div>
           <div className={classes.card}>
             <div className={classes.cardHeader}>
               <span>
                 <FontAwesomeIcon className={classes.cardIcon} icon={faLeaf} />
               </span>
-              <h3>Community living in nature</h3>
+              <h3>
+                {language === 'english' && 'Community living in nature'}
+                {language === 'spanish' &&
+                  'Una vida de communidad en la naturaleza'}
+              </h3>
             </div>
             <p>
-              We live together in each others loving company in the heart of the
-              beautiful Yucatan Jungle where life is given the ultimate
-              conditions to blossom.
+              {language === 'english' &&
+                "We live together in each other's loving company in the heart of the beautiful Yucatan Jungle where life is given the ultimate conditions to blossom."}
+              {language === 'spanish' &&
+                'Vivimos juntos en la compañía amorosa de los demás en el corazón de la hermosa selva de Yucatán, donde la vida tiene las mejores condiciones para florecer.'}
             </p>
-            <Link to="/services">Read More</Link>
+            <Link to="/services">
+              {language === 'english' && 'Read More'}
+              {language === 'spanish' && 'Lee mas'}
+            </Link>
           </div>
         </div>
         <p className={classes.belowCardsParagraph}>
           <Link className={classes.inlineLink} to="/services">
-            Click here
+            {language === 'english' && 'Click here'}
+            {language === 'spanish' && 'Haga clic aquí'}
           </Link>{' '}
-          to read more about what you could experience during your stay.{' '}
+          {language === 'english' &&
+            'to read more about what you could experience during your stay. '}
+          {language === 'spanish' &&
+            'para leer más sobre lo que podría experimentar durante su estadía. '}
           <Link className={classes.inlineLink} to="/about-us">
-            Click here
+            {language === 'english' && 'Click here'}
+            {language === 'spanish' && 'Haga clic aquí'}
           </Link>{' '}
-          to read more about the people behind this initiative.
+          {language === 'english' &&
+            'to read more about the people behind this initiative. '}
+          {language === 'spanish' &&
+            'para leer más sobre las personas detrás de esta iniciativa.'}
         </p>
       </div>
       <div className={classes.callToAction}>
         <div className={classes.callToActionText}>
-          <h2>Take the time to realign yourself</h2>
+          <h2>
+            {language === 'english' && 'Take the time to realign yourself'}
+            {language === 'spanish' && 'Tómese el tiempo para realinearse'}
+          </h2>
           <p>
-            We strive for achieving a sense of balance and peace in the entirety
-            of the being. What we want to see in a person after a visit with us
-            is someone who is energized, healthy, happy, strong and full of
-            purpose. We consider it to be the birthright of every human being to
-            feel good and we will do everything in our power to achieve this for
-            everyone that comes. Read more about our methods{' '}
+            {language === 'english' &&
+              'We strive for achieving a sense of balance and peace in the entiretyof the being. What we want to see in a person after a visit with usis someone who is energized, healthy, happy, strong and full ofpurpose. We consider it to be the birthright of every human being tofeel good and we will do everything in our power to achieve this for everyone that comes. Read more about our methods '}
+            {language === 'spanish' &&
+              'Nos esforzamos por lograr una sensación de equilibrio y paz en la totalidad del ser. Lo que queremos ver en una persona después de una visita con nosotros es alguien que esté lleno de energía, sano, feliz, fuerte y lleno de propósito. Consideramos que es un derecho innato de todo ser humano sentirse bien y haremos todo lo que esté a nuestro alcance para lograrlo para todos los que vengan. Lea más sobre nuestros métodos '}
             <Link className={classes.inlineLink} to="/services">
-              here
+              {language === 'english' && 'here'}
+              {language === 'spanish' && 'aquí'}
             </Link>
             .
           </p>

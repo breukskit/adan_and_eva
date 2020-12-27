@@ -77,11 +77,15 @@ interface IFooterProps {
 export const Footer = (props: IFooterProps) => {
   const classes = useStyles();
   const langContext = useContext(context);
+  const language = langContext!.language;
   return (
     <footer className={classes.footer}>
       <div className={classes.footerWrapper}>
         <div className={classes.leftContent}>
-          <h3 className={classes.footerHeader}>Choose language</h3>
+          <h3 className={classes.footerHeader}>
+            {language === 'english' && 'Choose language'}
+            {language === 'spanish' && 'Elige lengua'}
+          </h3>
           <div className={classes.languages}>
             <p
               className={classes.languagePick}
@@ -106,7 +110,10 @@ export const Footer = (props: IFooterProps) => {
               English
             </p>
           </div>
-          <h3 className={classes.footerHeader}>Follow us on social media</h3>
+          <h3 className={classes.footerHeader}>
+            {language === 'english' && 'Follow us on social media'}
+            {language === 'spanish' && 'Síguenos en las redes sociales'}
+          </h3>
           <div className={classes.socialMediaLinks}>
             <a
               href="https://www.facebook.com/yogahuazca"
@@ -119,7 +126,10 @@ export const Footer = (props: IFooterProps) => {
         </div>
 
         <div className={classes.rightContent}>
-          <h3 className={classes.footerHeader}>Contact information</h3>
+          <h3 className={classes.footerHeader}>
+            {language === 'english' && 'Contact information'}
+            {language === 'spanish' && 'Información de contacto'}
+          </h3>
           <div className={classes.rightInnerContent}>
             <h4 style={{ marginBottom: '.5rem' }}>Email:</h4>
             <p style={{ marginBottom: '1rem' }}>
@@ -138,9 +148,15 @@ export const Footer = (props: IFooterProps) => {
                 adan.corrovina13@gmail.com
               </a>
             </p>
-            <h4 style={{ marginBottom: '.5rem' }}>Phone number:</h4>
+            <h4 style={{ marginBottom: '.5rem' }}>
+              {language === 'english' && 'Phone number:'}
+              {language === 'spanish' && 'Número de teléfono:'}
+            </h4>
             <p style={{ marginBottom: '1rem' }}>+46 735 57 04 68</p>
-            <h4 style={{ marginBottom: '.5rem' }}>Address:</h4>
+            <h4 style={{ marginBottom: '.5rem' }}>
+              {language === 'english' && 'Address:'}
+              {language === 'spanish' && 'Dirección:'}
+            </h4>
             <p style={{ marginBottom: '1rem' }}>
               Nuevo Durango, Quintana Roo, Mexiko
             </p>
