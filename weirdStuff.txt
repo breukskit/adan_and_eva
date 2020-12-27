@@ -1,0 +1,10 @@
+"homepage": "https://github.com/breukskit/adan_and_eva#readme",
+
+"repository": {
+    "type": "git",
+    "url": "git+https://github.com/breukskit/adan_and_eva.git"
+  },
+
+  "bugs": {
+    "url": "https://github.com/breukskit/adan_and_eva/issues"
+  },

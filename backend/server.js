@@ -1,9 +1,23 @@
 const express = require('express');
 const nodemailer = require('nodemailer');
+const dotenv = require('dotenv');
+const path = require('path');
+
+dotenv.config();
 
 const app = express();
 
 app.use(express.json());
+
+const dirname = path.resolve();
+
+if (process.env.NODE_ENV === 'production') {
+  app.use(express.static(path.join(dirname, '/frontend/build')));
+
+  app.get('*', (req, res) => {
+    res.sendFile(path.resolve(dirname, 'frontend', 'build', 'index.html'));
+  });
+}
 
 const PORT = process.env.PORT || 5000;
 
@@ -14,8 +28,8 @@ app.post('/sendEmail', (req, res) => {
     let transporter = nodemailer.createTransport({
       service: 'Gmail',
       auth: {
-        user: 'forstendaniel@gmail.com',
-        pass: 'Breckuskitte23',
+        user: process.env.EMAIL,
+        pass: process.env.EMAIL_PASSWORD,
       },
     });
 
