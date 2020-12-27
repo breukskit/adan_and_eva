@@ -107,6 +107,7 @@ const useStyles = createUseStyles({
   subHeader: {
     textAlign: 'center',
     background: 'rgba(0,0,0,0.95)',
+    lineHeight: '2.1rem',
     padding: {
       top: '2rem',
       right: '1rem',
@@ -149,21 +150,21 @@ const useStyles = createUseStyles({
     borderRadius: '5px',
     boxShadow: '3px 3px 10px 0px rgba(50, 50, 50, 0.5)',
     margin: '1rem',
-    '& $p': {
-      textAlign: 'center',
-      lineHeight: '1.75rem',
-      marginBottom: '1rem',
-      fontSize: '1.1rem',
-      fontWeight: 600,
-      color: theme.primaryTextColor,
+  },
+  cardLink: {
+    color: theme.primaryColor,
+    fontSize: '1.2rem',
+    '&:hover': {
+      textDecoration: 'underline',
     },
-    '& $a': {
-      color: theme.primaryColor,
-      fontSize: '1.2rem',
-      '&:hover': {
-        textDecoration: 'underline',
-      },
-    },
+  },
+  cardParagraph: {
+    textAlign: 'center',
+    lineHeight: '1.75rem',
+    marginBottom: '1rem',
+    fontSize: '1.1rem',
+    fontWeight: 600,
+    color: theme.primaryTextColor,
   },
   cardHeader: {
     color: theme.primaryColor,
@@ -172,10 +173,10 @@ const useStyles = createUseStyles({
     display: 'flex',
     flexDirection: 'column',
     alignItems: 'center',
-    '& $h3': {
-      textAlign: 'center',
-      fontSize: '1.5rem',
-    },
+  },
+  cardHeaderh3: {
+    textAlign: 'center',
+    fontSize: '1.5rem',
   },
   cardIcon: {
     marginBottom: '.2rem',
@@ -214,17 +215,17 @@ const useStyles = createUseStyles({
       bottom: 0,
       left: '1.5rem',
     },
-    '& $h2': {
-      marginBottom: '1.5rem',
+  },
+  callToActionP: {
+    lineHeight: '2rem',
+    fontSize: '1.1rem',
+    '@media(min-width: 800px)': {
+      maxWidth: '80%',
+      margin: 'auto',
     },
-    '& $p': {
-      lineHeight: '2rem',
-      fontSize: '1.1rem',
-      '@media(min-width: 800px)': {
-        maxWidth: '80%',
-        margin: 'auto',
-      },
-    },
+  },
+  callToActionh2: {
+    marginBottom: '1.5rem',
   },
   callToActionImgContainer: {
     display: 'flex',
@@ -281,15 +282,15 @@ export const Home = () => {
               <span>
                 <FontAwesomeIcon className={classes.cardIcon} icon={faHeart} />
               </span>
-              <h3>Yoga</h3>
+              <h3 className={classes.cardHeaderh3}>Yoga</h3>
             </div>
-            <p>
+            <p className={classes.cardParagraph}>
               {language === 'english' &&
                 'Ashtanga Yoga from the Tibetan Yoga-tradition that "vacuums" the physical system and creates a sense of union between the body, mind and soul.'}
               {language === 'spanish' &&
                 'La Yoga Ashtanga de la tradición Tibetana que purifica el sístema físico y cree una sensación de unión del cuerpo, de la mente y del alma.'}
             </p>
-            <Link to="/services">
+            <Link className={classes.cardLink} to="/services">
               {language === 'english' && 'Read More'}
               {language === 'spanish' && 'Lee mas'}
             </Link>
@@ -299,15 +300,15 @@ export const Home = () => {
               <span>
                 <FontAwesomeIcon className={classes.cardIcon} icon={faFrog} />
               </span>
-              <h3>Temazcal</h3>
+              <h3 className={classes.cardHeaderh3}>Temazcal</h3>
             </div>
-            <p>
+            <p className={classes.cardParagraph}>
               {language === 'english' &&
                 'Also known as "Mayan sweatlodge" or "shamanic shower" is aceremony conducted in high temperatures where water, herbs, music, and energetic crystals is used to cleanse the body and purify the mind and spirit.'}
               {language === 'spanish' &&
                 'También conocido como "baño de sudor maya" o "ducha chamánica" es una ceremonia que se lleva a cabo a altas temperaturas donde se usa agua, hierbas, música y cristales energéticos para limpiar el cuerpo y purificar la mente y el espíritu.'}
             </p>
-            <Link to="/services">
+            <Link className={classes.cardLink} to="/services">
               {language === 'english' && 'Read More'}
               {language === 'spanish' && 'Lee mas'}
             </Link>
@@ -317,19 +318,19 @@ export const Home = () => {
               <span>
                 <FontAwesomeIcon className={classes.cardIcon} icon={faLeaf} />
               </span>
-              <h3>
+              <h3 className={classes.cardHeaderh3}>
                 {language === 'english' && 'Community living in nature'}
                 {language === 'spanish' &&
                   'Una vida de communidad en la naturaleza'}
               </h3>
             </div>
-            <p>
+            <p className={classes.cardParagraph}>
               {language === 'english' &&
                 "We live together in each other's loving company in the heart of the beautiful Yucatan Jungle where life is given the ultimate conditions to blossom."}
               {language === 'spanish' &&
                 'Vivimos juntos en la compañía amorosa de los demás en el corazón de la hermosa selva de Yucatán, donde la vida tiene las mejores condiciones para florecer.'}
             </p>
-            <Link to="/services">
+            <Link className={classes.cardLink} to="/services">
               {language === 'english' && 'Read More'}
               {language === 'spanish' && 'Lee mas'}
             </Link>
@@ -356,11 +357,11 @@ export const Home = () => {
       </div>
       <div className={classes.callToAction}>
         <div className={classes.callToActionText}>
-          <h2>
+          <h2 className={classes.callToActionh2}>
             {language === 'english' && 'Take the time to realign yourself'}
             {language === 'spanish' && 'Tómese el tiempo para realinearse'}
           </h2>
-          <p>
+          <p className={classes.callToActionP}>
             {language === 'english' &&
               'We strive for achieving a sense of balance and peace in the entiretyof the being. What we want to see in a person after a visit with usis someone who is energized, healthy, happy, strong and full ofpurpose. We consider it to be the birthright of every human being tofeel good and we will do everything in our power to achieve this for everyone that comes. Read more about our methods '}
             {language === 'spanish' &&

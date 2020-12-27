@@ -20,21 +20,35 @@ const useStyles = createUseStyles({
   },
   imgContainer: {
     width: '100%',
-    display: 'grid',
-    gridTemplateColumns: 'repeat(1, 1fr)',
-    gap: '1.5rem',
-    // justifyItems: 'center',
+    // display: 'grid',
+    // gridTemplateColumns: '1fr',
+    display: 'flex',
+    flexDirection: 'column',
+    gap: '.5rem',
+    marginBottom: '2rem',
+    padding: '1rem',
   },
   imgBox: {
     display: 'flex',
     justifyContent: 'center',
     alignItems: 'center',
-    maxWidth: '800px',
-    margin: 'auto',
+    flexWrap: 'flex',
     width: '100%',
+    '@media(max-width: 600px)': {
+      flexDirection: 'column',
+    },
   },
   img: {
     width: '100%',
+  },
+  leftElement: {
+    marginRight: '.5rem',
+    width: '45%',
+    maxWidth: '330px',
+    '@media(max-width: 600px)': {
+      marginRight: 0,
+      marginBottom: '.5rem',
+    },
   },
 });
 
@@ -44,16 +58,72 @@ export const Gallery = () => {
     <div className={classes.galleryContainer}>
       <div className={classes.imgContainer}>
         <div className={classes.imgBox}>
-          <img className={classes.img} loading="lazy" src={one} alt="" />
+          <img
+            style={{ maxWidth: '900px' }}
+            className={classes.img}
+            loading="lazy"
+            src={one}
+            alt=""
+          />
         </div>
-        <img loading="lazy" src={two} alt="" />
-        <img loading="lazy" src={three} alt="" />
-        <img loading="lazy" src={four} alt="" />
-        <img loading="lazy" src={five} alt="" />
-        <img loading="lazy" src={six} alt="" />
-        <img loading="lazy" src={eight} alt="" />
-        <img loading="lazy" src={seven} alt="" />
-        <img loading="lazy" src={nine} alt="" />
+        <div className={classes.imgBox}>
+          <img
+            style={{ maxWidth: '640px' }}
+            className={classes.img}
+            loading="lazy"
+            src={two}
+            alt=""
+          />
+        </div>
+        <div className={classes.imgBox}>
+          <img
+            style={{ maxWidth: '700px' }}
+            className={classes.img}
+            loading="lazy"
+            src={three}
+            alt=""
+          />
+        </div>
+        <div className={classes.imgBox}>
+          <img
+            className={classes.leftElement}
+            loading="lazy"
+            src={four}
+            alt=""
+          />
+          <img
+            loading="lazy"
+            src={six}
+            alt=""
+            style={{ width: '45%', maxWidth: '330px' }}
+          />
+        </div>
+        <div className={classes.imgBox}>
+          <img className={classes.img} loading="lazy" src={five} alt="" />
+        </div>
+        <div className={classes.imgBox}>
+          <img
+            className={classes.leftElement}
+            loading="lazy"
+            src={eight}
+            alt=""
+          />
+          <img
+            style={{ width: '45%', maxWidth: '330px' }}
+            loading="lazy"
+            src={nine}
+            alt=""
+          />
+        </div>
+        <div className={classes.imgBox}>
+          <img
+            style={{ maxWidth: '640px' }}
+            className={classes.img}
+            loading="lazy"
+            src={seven}
+            alt=""
+          />
+        </div>
       </div>
     </div>
   );
