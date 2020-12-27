@@ -208,7 +208,7 @@ const useStyles = createUseStyles({
 
 export const Contact = () => {
   const classes = useStyles();
-  const lang = useContext(context)!.language;
+  const language = useContext(context)!.language;
   const [state, setState] = useState({ name: '', email: '', message: '' });
   const [emailSuccess, setEmailSuccess] = useState(false);
   const [error, setError] = useState(false);
@@ -269,6 +269,7 @@ export const Contact = () => {
           setLoading(false);
           setEmailSuccess(true);
         } else {
+          setState({ name: '', email: '', message: '' });
           setServerError(true);
         }
       } catch (error) {
@@ -276,6 +277,7 @@ export const Contact = () => {
         // console.log('hej');
         setServerError(true);
         setLoading(false);
+        setState({ name: '', email: '', message: '' });
       }
     }
   };
@@ -294,13 +296,20 @@ export const Contact = () => {
             size="lg"
             onClick={() => setServerError(false)}
           />
-          <h2 className={classes.serverErrorModalHeader}>Error!</h2>
+          <h2 className={classes.serverErrorModalHeader}>
+            {language === 'english' && 'Error!'}
+            {language === 'spanish' && 'Error!'}
+          </h2>
           <h3 className={classes.serverErrorModalSubheader}>
-            Your email could not be sent!
+            {language === 'english' && 'Your email could not be sent!'}
+            {language === 'spanish' &&
+              'No se pudo enviar su correo electrónico!'}
           </h3>
           <p className={classes.serverErrorModalParagraph}>
-            An error occurred. Please use the contact-information in the bottom
-            of the page instead.
+            {language === 'english' &&
+              'An error occurred. Please use the contact-information in the bottom of the page instead.'}
+            {language === 'spanish' &&
+              'Ocurrió un error. En su lugar, utilice la información de contacto en la parte inferior de la página.'}
           </p>
           <button
             className={classes.successModalCloseBtn}
@@ -318,39 +327,53 @@ export const Contact = () => {
             size="lg"
             onClick={() => setEmailSuccess(false)}
           />
-          <h2 className={classes.successModalHeader}>Success!</h2>
+          <h2 className={classes.successModalHeader}>
+            {language === 'english' && 'Success!'}
+            {language === 'spanish' && 'Éxito!'}
+          </h2>
           <h3 className={classes.successModalSubHeader}>
-            Your email has been sent!
+            {language === 'english' && 'Your email has been sent!'}
+            {language === 'spanish' && 'Tu correo ha sido enviado!'}
           </h3>
           <p className={classes.successModalParagraph}>
-            Thank you for your message. We will get back to you as soon as
-            possible.
+            {language === 'english' &&
+              'Thank you for your message. We will get back to you as soon as possible.'}
+            {language === 'spanish' &&
+              'Gracias por tu mensaje. Nos comunicaremos con usted lo antes posible.'}
           </p>
           <button
             className={classes.successModalCloseBtn}
             onClick={() => setEmailSuccess(false)}
           >
-            Close
+            {language === 'english' && 'Close'}
+            {language === 'spanish' && 'Cerrar'}
           </button>
         </div>
       )}
       <h1 className={classes.header}>
-        {lang === 'english' && 'Contact'}
-        {lang === 'spanish' && 'Contacto'}
+        {language === 'english' && 'Contact'}
+        {language === 'spanish' && 'Contacto'}
       </h1>
       <p className={classes.paragraph}>
-        Contact us and we will get in touch with you as soon as possible! We are
-        looking forward to hearing from you.
+        {language === 'english' &&
+          'Contact us and we will get in touch with you as soon as possible! We are looking forward to hearing from you.'}
+        {language === 'spanish' &&
+          'Contáctanos y nos pondremos en contacto contigo lo antes posible! Esperamos tener noticias tuyas.'}
       </p>
       <div className={classes.formInformation}>
         <h3 className={classes.formInformationHeader}>Contact Form</h3>
         <p className={classes.formInformationP}>
-          Required fields are marked with *
+          {language === 'english' && 'Required fields are marked with *'}
+          {language === 'spanish' &&
+            'Los campos obligatorios están marcados con *'}
         </p>
       </div>
       <form className={classes.form} onSubmit={handleSubmit}>
         <label htmlFor="name" className={classes.label}>
-          <span className={classes.labelSpan}>Name: *</span>
+          <span className={classes.labelSpan}>
+            {language === 'english' && 'Name: *'}
+            {language === 'spanish' && 'Nombre: *'}
+          </span>
           <input
             className={classes.formInput}
             onChange={handleChange}
@@ -358,7 +381,7 @@ export const Contact = () => {
             type="text"
             name="name"
             id="name"
-            placeholder="Name..."
+            placeholder={language === 'english' ? 'Name...' : 'Nombre...'}
           />
         </label>
         <label htmlFor="email" className={classes.label}>
@@ -374,11 +397,14 @@ export const Contact = () => {
           />
         </label>
         <label htmlFor="message" className={classes.label}>
-          <span className={classes.labelSpan}>Message: *</span>
+          <span className={classes.labelSpan}>
+            {language === 'english' && 'Message: *'}
+            {language === 'spanish' && 'Mensaje: *'}
+          </span>
           <textarea
             value={message}
             className={classes.textArea}
-            placeholder="Message..."
+            placeholder={language === 'english' ? 'Message...' : 'Mensaje...'}
             onChange={handleChange}
             name="message"
             id="message"
@@ -389,12 +415,16 @@ export const Contact = () => {
         {error && (
           <div className={classes.errorContainer}>
             <h3 className={classes.errorMsg}>
-              Please fill out all the required fields
+              {language === 'english' &&
+                'Please fill out all the required fields'}
+              {language === 'spanish' &&
+                'Por favor, rellene todos los campos obligatorios'}
             </h3>
           </div>
         )}
         <button className={classes.formButton} type="submit">
-          Send
+          {language === 'english' && 'Send'}
+          {language === 'spanish' && 'Enviar'}
         </button>
       </form>
     </div>
