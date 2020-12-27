@@ -4,13 +4,15 @@ import { theme } from '../Theme';
 
 import { Link } from 'react-router-dom';
 
-import yogaJungle from '../assets/yoga-jungle.jpg';
+import yoga from '../assets/yoga.jpg';
 import pyramid from '../assets/pyramid.jpg';
 import temazcal from '../assets/temazcal.jpg';
 import fruits from '../assets/fruits.jpg';
 import cenote from '../assets/cenote.jpg';
 import beach from '../assets/beach.jpg';
 import bienvenidos from '../assets/11-min.jpg';
+import crystals from '../assets/crystals.jpg';
+import drums from '../assets/drums.jpg';
 
 import { createUseStyles } from 'react-jss';
 
@@ -23,6 +25,7 @@ const useStyles = createUseStyles({
     textAlign: 'center',
     paddingTop: '1rem',
     marginBottom: '1.5rem',
+    fontSize: '2.5rem',
   },
   subHeader: {
     fontWeight: 500,
@@ -88,6 +91,7 @@ const useStyles = createUseStyles({
   },
   methodImg: {
     maxWidth: '100%',
+    maxHeight: '100%',
   },
   finishingParagraph: {
     textAlign: 'center',
@@ -137,8 +141,8 @@ export const Services = () => {
             <img
               loading="lazy"
               className={classes.methodImg}
-              src={yogaJungle}
-              alt="Woman doing yoga in the jungle"
+              src={yoga}
+              alt="Woman doing yoga"
             />
           </div>
         </div>
@@ -287,35 +291,39 @@ export const Services = () => {
             <img
               loading="lazy"
               className={classes.methodImg}
-              src={fruits}
-              alt="Fruits"
+              src={drums}
+              alt="Drums"
             />
           </div>
           <div className={classes.methodTextContent}>
-            <h2 className={classes.methodHeader}>Eco food/Jungle gastronomy</h2>
+            <h2 className={classes.methodHeader}>Music</h2>
             <p className={classes.methodDescription}>
-              Mexico's food culture is one of the world's most vibrant ones and
-              on top of that, the jungle provides a plethora of delicious things
-              to consume. Rich on vitamins and nutrition, the fruits and
-              vegetables that we grow ourselves in our community does wonders
-              for the health. It is a pleasure for the senses to eat things that
-              are 100% natural and therefore full of flavour and nutrition.
+              Music playes a important role in our everyday life and activities.
+              We sing and play all the time, using every instrument at our
+              disposal. During our ceremonies we encourage everyone to pick up
+              our preispanic flutes and drums and join in - it is a simple way
+              to elevate any situation.
             </p>
           </div>
         </div>
         <div className={classes.method}>
           <div className={classes.methodTextContent}>
-            <h2 className={classes.methodHeader}>Music</h2>
+            <h2 className={classes.methodHeader}>Energetic materials</h2>
             <p className={classes.methodDescription}>
-              Music. Materials, hantverk, honey etc.
+              Just like with the music our energy-charged materials tends to
+              follow us everywhere we go. We use these materials (such as
+              obsidian, amber, quartzes etc) as a source of energy in our
+              ceremonies and of course also for their beauty in everyday life.
+              The Maya held these materials in very high esteem and we follow
+              their example!
             </p>
           </div>
           <div className={classes.methodImgContainer}>
             <img
               loading="lazy"
               className={classes.methodImg}
-              src={cenote}
-              alt="Cenote"
+              src={crystals}
+              alt="Crystals"
             />
           </div>
         </div>
