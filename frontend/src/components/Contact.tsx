@@ -378,6 +378,7 @@ export const Contact = () => {
           <textarea
             value={message}
             className={classes.textArea}
+            placeholder="Message..."
             onChange={handleChange}
             name="message"
             id="message"
