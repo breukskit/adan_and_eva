@@ -304,7 +304,7 @@ export const Home = () => {
             </div>
             <p className={classes.cardParagraph}>
               {language === 'english' &&
-                'Also known as "Mayan sweatlodge" or "shamanic shower" is aceremony conducted in high temperatures where water, herbs, music, and energetic crystals is used to cleanse the body and purify the mind and spirit.'}
+                'Also known as "Mayan sweatlodge" or "shamanic shower" is a ceremony conducted in high temperatures where water, herbs, music, and energetic crystals is used to cleanse the body and purify the mind and spirit.'}
               {language === 'spanish' &&
                 'También conocido como "baño de sudor maya" o "ducha chamánica" es una ceremonia que se lleva a cabo a altas temperaturas donde se usa agua, hierbas, música y cristales energéticos para limpiar el cuerpo y purificar la mente y el espíritu.'}
             </p>
@@ -363,7 +363,7 @@ export const Home = () => {
           </h2>
           <p className={classes.callToActionP}>
             {language === 'english' &&
-              'We strive for achieving a sense of balance and peace in the entiretyof the being. What we want to see in a person after a visit with usis someone who is energized, healthy, happy, strong and full ofpurpose. We consider it to be the birthright of every human being tofeel good and we will do everything in our power to achieve this for everyone that comes. Read more about our methods '}
+              'We strive for achieving a sense of balance and peace in the entirety of the being. What we want to see in a person after a visit with usis someone who is energized, healthy, happy, strong and full of purpose. We consider it to be the birthright of every human being to feel good and we will do everything in our power to achieve this for everyone that comes. Read more about our methods '}
             {language === 'spanish' &&
               'Nos esforzamos por lograr una sensación de equilibrio y paz en la totalidad del ser. Lo que queremos ver en una persona después de una visita con nosotros es alguien que esté lleno de energía, sano, feliz, fuerte y lleno de propósito. Consideramos que es un derecho innato de todo ser humano sentirse bien y haremos todo lo que esté a nuestro alcance para lograrlo para todos los que vengan. Lea más sobre nuestros métodos '}
             <Link className={classes.inlineLink} to="/services">

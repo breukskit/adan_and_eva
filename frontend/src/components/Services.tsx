@@ -212,7 +212,7 @@ export const Services = () => {
             </h2>
             <p className={classes.methodDescription}>
               {language === 'english' &&
-                "Mexico's food culture is one of the world's most vibrant ones andon top of that, the jungle provides a plethora of delicious things to consume. Rich on vitamins and nutrition, the fruits and vegetables that we grow ourselves in our community does wonders for the health. It is a pleasure for the senses to eat things that are 100% natural and therefore full of flavour and nutrition."}
+                "Mexico's food culture is one of the world's most vibrant ones and on top of that, the jungle provides a plethora of delicious things to consume. Rich on vitamins and nutrition, the fruits and vegetables that we grow ourselves in our community does wonders for the health. It is a pleasure for the senses to eat things that are 100% natural and therefore full of flavour and nutrition."}
               {language === 'spanish' &&
                 'La cultura gastronómica de México es una de las más vibrantes del mundo y, además, la selva ofrece una gran cantidad de cosas deliciosas para consumir. Rico en vitaminas y nutrición, las frutas y verduras que cultivamos nosotros mismos en nuestra comunidad hacen maravillas por la salud. Es un placer para los sentidos comer cosas 100% naturales y por tanto llenas de sabor y nutrición.'}
             </p>
