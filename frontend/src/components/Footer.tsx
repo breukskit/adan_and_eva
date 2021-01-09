@@ -9,6 +9,7 @@ import mexicanFlag from '../assets/mexican-flag.png';
 import britishFlag from '../assets/british-flag.png';
 
 import { createUseStyles } from 'react-jss';
+import { theme } from '../Theme';
 
 const useStyles = createUseStyles({
   footer: {
@@ -67,6 +68,12 @@ const useStyles = createUseStyles({
     width: '300',
     height: '300',
   },
+  inlineLink: {
+    color: theme.primaryColor,
+    '&:hover': {
+      textDecoration: 'underline',
+    },
+  },
 });
 
 interface IFooterProps {
@@ -121,6 +128,20 @@ export const Footer = (props: IFooterProps) => {
               target="_blank"
             >
               <FontAwesomeIcon icon={faFacebookF} color="#767676" size="2x" />
+            </a>
+          </div>
+          <h3 className={classes.footerHeader}>
+            {language === 'english' && 'Visit our blog'}
+            {language === 'spanish' && 'Visita nuestro blog'}
+          </h3>
+          <div className={classes.socialMediaLinks}>
+            <a
+              className={classes.inlineLink}
+              href="https://adanandeva.wixsite.com/blog"
+              rel="noreferrer"
+              target="_blank"
+            >
+              adanandeva.wixsite.com/blog
             </a>
           </div>
         </div>
