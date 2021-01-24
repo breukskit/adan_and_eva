@@ -123,7 +123,7 @@ export const Footer = (props: IFooterProps) => {
           </h3>
           <div className={classes.socialMediaLinks}>
             <a
-              href="https://www.facebook.com/yogahuazca"
+              href="https://www.facebook.com/AdanAndEvaPreispanic"
               rel="noreferrer"
               target="_blank"
             >
@@ -162,18 +162,16 @@ export const Footer = (props: IFooterProps) => {
               </a>
             </p>
             <p style={{ marginBottom: '1rem' }}>
-              <a
-                style={{ color: '#767676' }}
-                href="mailto:adan.corrovina13@gmail.com"
-              >
-                adan.corrovina13@gmail.com
+              <a style={{ color: '#767676' }} href="mailto:evafor60@gmail.com">
+                evafor60@gmail.com
               </a>
             </p>
             <h4 style={{ marginBottom: '.5rem' }}>
-              {language === 'english' && 'Phone number:'}
-              {language === 'spanish' && 'Número de teléfono:'}
+              {language === 'english' && 'Phone number/WhatsApp:'}
+              {language === 'spanish' && 'Número de teléfono/WhatsApp:'}
             </h4>
-            <p style={{ marginBottom: '1rem' }}>+46 735 57 04 68</p>
+            <p style={{ marginBottom: '1rem' }}>+52 984 186 4634</p>
+            <p style={{ marginBottom: '1rem' }}>+52 984 235 5135</p>
             <h4 style={{ marginBottom: '.5rem' }}>
               {language === 'english' && 'Address:'}
               {language === 'spanish' && 'Dirección:'}
